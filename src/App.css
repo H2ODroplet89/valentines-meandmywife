@@ -1,42 +1,671 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* ═══════════════════════════════════════════════
+   Valentine's — App.css
+   Mobile-first · Playful · Animated
+   ═══════════════════════════════════════════════ */
+
+/* ── page ────────────────────────────────────── */
+.page {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0.75rem 3rem;
+  overflow-x: hidden;
+  gap: 1rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.fade-in {
+  animation: fadeSlideUp 0.45s ease both;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* ── floating hearts ─────────────────────────── */
+.floating-hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.heart {
+  position: absolute;
+  bottom: -40px;
+  opacity: 0;
+  animation: floatUp linear infinite;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* ── confetti ────────────────────────────────── */
+.confetti-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+.confetti-piece {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: confettiBurst 1.6s ease-out both;
 }
 
+/* ── card (shared panel) ─────────────────────── */
 .card {
-  padding: 2em;
+  position: relative;
+  z-index: 2;
+  width: min(620px, 94vw);
+  padding: 1.75rem 1.25rem;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 16px 44px rgba(194, 51, 102, 0.16);
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+.card--accepted {
+  box-shadow:
+    0 20px 60px rgba(220, 38, 100, 0.28),
+    0 0 50px rgba(244, 114, 182, 0.15);
 }
 
-.read-the-docs {
-  color: #888;
+/* ── big heart ───────────────────────────────── */
+.big-heart {
+  font-size: 2.8rem;
+  animation: heartbeat 1.2s ease-in-out infinite;
+  margin-bottom: 0.2rem;
+}
+
+/* ── typography ──────────────────────────────── */
+.eyebrow {
+  margin: 0;
+  color: #bf2e68;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+h1,
+h2 {
+  margin: 0.4rem 0 0;
+  color: #831843;
+  line-height: 1.25;
+}
+h1 {
+  font-size: clamp(1.5rem, 5.5vw, 2.6rem);
+}
+h2 {
+  font-size: clamp(1.25rem, 4.5vw, 1.8rem);
+}
+h1.bounce-in {
+  animation: bounceIn 0.7s ease both;
+}
+.subtitle {
+  margin: 0.5rem auto 0;
+  max-width: 44ch;
+  color: #6a2145;
+  font-size: clamp(0.88rem, 2.8vw, 1rem);
+  white-space: pre-line;
+}
+.home-hint {
+  margin-top: 1rem;
+  color: #9d174d;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+/* ── countdown ───────────────────────────────── */
+.countdown {
+  margin-top: 0.75rem;
+  font-size: clamp(0.9rem, 2.8vw, 1.05rem);
+  color: #9f1239;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── button arena ────────────────────────────── */
+.button-arena {
+  position: relative;
+  margin: 1.25rem auto 0;
+  width: min(460px, 90vw);
+  height: 200px;
+  border-radius: 18px;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.92),
+    rgba(255, 228, 240, 0.85)
+  );
+  border: 1.5px dashed rgba(190, 24, 93, 0.22);
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* ── shared button reset ─────────────────────── */
+button {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.7rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+  user-select: none;
+}
+
+/* ── yes / no ────────────────────────────────── */
+.yes-btn {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, #ff4d8d, #e11d48);
+  color: white;
+  box-shadow: 0 8px 22px rgba(225, 29, 72, 0.35);
+  z-index: 3;
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s ease;
+}
+.yes-btn:hover,
+.yes-btn:active {
+  box-shadow: 0 12px 30px rgba(225, 29, 72, 0.5);
+}
+.yes-btn.pulse {
+  animation: gentlePulse 2s ease-in-out infinite;
+}
+.no-btn {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fff;
+  color: #881337;
+  border: 1.5px solid rgba(136, 19, 55, 0.22);
+  min-width: 90px;
+  z-index: 3;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  white-space: nowrap;
+  font-size: 0.85rem;
+}
+.no-btn.free {
+  right: auto;
+  top: 0;
+  left: 0;
+}
+
+.hint {
+  margin: 0.7rem 0 0;
+  color: #9d174d;
+  font-size: clamp(0.82rem, 2.5vw, 0.92rem);
+  animation: fadeSlideUp 0.4s ease both;
+}
+
+/* ── action button (reusable) ────────────────── */
+.action-btn {
+  margin-top: 1rem;
+  background: linear-gradient(135deg, #ff4d8d, #e11d48);
+  color: white;
+  box-shadow: 0 6px 18px rgba(225, 29, 72, 0.3);
+  font-size: 0.95rem;
+}
+.action-btn:hover,
+.action-btn:active {
+  transform: scale(1.04);
+}
+
+/* ══════════════════════════════════════════════
+   TAB BAR
+   ══════════════════════════════════════════════ */
+.tab-bar {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: min(640px, 96vw);
+  padding: 0.5rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 18px rgba(194, 51, 102, 0.1);
+}
+.tab-btn {
+  background: transparent;
+  color: #831843;
+  font-size: 0.78rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  font-weight: 600;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+.tab-btn.active {
+  background: linear-gradient(135deg, #ff4d8d, #e11d48);
+  color: white;
+  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.25);
+}
+.tab-btn:hover:not(.active) {
+  background: rgba(225, 29, 72, 0.08);
+}
+.tab-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* ══════════════════════════════════════════════
+   REASONS (flip cards)
+   ══════════════════════════════════════════════ */
+.reasons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+.reason-card {
+  perspective: 600px;
+  height: 120px;
+  cursor: pointer;
+}
+.reason-card .reason-front,
+.reason-card .reason-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: transform 0.5s ease;
+  padding: 0.6rem;
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+.reason-card {
+  position: relative;
+}
+.reason-front {
+  background: linear-gradient(135deg, #fde7f0, #fcc5d9);
+  color: #9f1239;
+  font-weight: 800;
+  font-size: 1.4rem;
+  transform: rotateY(0deg);
+}
+.reason-back {
+  background: #fff;
+  color: #6a2145;
+  font-weight: 500;
+  transform: rotateY(180deg);
+  border: 1px solid rgba(190, 24, 93, 0.15);
+}
+.reason-card.flipped .reason-front {
+  transform: rotateY(180deg);
+}
+.reason-card.flipped .reason-back {
+  transform: rotateY(0deg);
+}
+
+/* ══════════════════════════════════════════════
+   QUIZ
+   ══════════════════════════════════════════════ */
+.quiz-progress {
+  margin-top: 0.4rem;
+  color: #9d174d;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.quiz-question {
+  margin: 0.9rem 0 0;
+  color: #831843;
+  font-size: clamp(1rem, 3vw, 1.15rem);
+  font-weight: 700;
+}
+.quiz-score {
+  margin: 0.5rem 0;
+  font-size: 2.2rem;
+  color: #e11d48;
+  font-weight: 800;
+}
+.quiz-opts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+}
+.quiz-opt {
+  background: #fff;
+  color: #831843;
+  border: 1.5px solid rgba(190, 24, 93, 0.18);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    transform 0.2s;
+}
+.quiz-opt:hover {
+  border-color: #e11d48;
+  transform: scale(1.02);
+}
+.quiz-opt.correct {
+  background: #d1fae5;
+  border-color: #059669;
+  color: #065f46;
+}
+.quiz-opt.wrong {
+  background: #fee2e2;
+  border-color: #dc2626;
+  color: #991b1b;
+}
+
+/* ══════════════════════════════════════════════
+   MEMORY MATCH
+   ══════════════════════════════════════════════ */
+.memory-moves {
+  margin: 0.4rem 0 0;
+  color: #9d174d;
+  font-weight: 700;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.55rem;
+  margin-top: 0.9rem;
+  max-width: 340px;
+  margin-inline: auto;
+}
+.mem-card {
+  perspective: 500px;
+  aspect-ratio: 1;
+  cursor: pointer;
+}
+.mem-card .mem-front,
+.mem-card .mem-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: transform 0.4s ease;
+  font-size: 1.5rem;
+}
+.mem-card {
+  position: relative;
+}
+.mem-front {
+  background: linear-gradient(135deg, #fde7f0, #fcc5d9);
+  color: #9f1239;
+  font-weight: 800;
+  transform: rotateY(0deg);
+}
+.mem-back {
+  background: #fff;
+  transform: rotateY(180deg);
+  border: 1px solid rgba(190, 24, 93, 0.15);
+}
+.mem-card.mem-show .mem-front {
+  transform: rotateY(180deg);
+}
+.mem-card.mem-show .mem-back {
+  transform: rotateY(0deg);
+}
+.memory-win {
+  margin-top: 0.9rem;
+  color: #831843;
+  font-weight: 600;
+}
+
+/* ══════════════════════════════════════════════
+   SCRATCH CARD
+   ══════════════════════════════════════════════ */
+.scratch-wrapper {
+  position: relative;
+  width: min(380px, 88vw);
+  height: 180px;
+  margin: 1rem auto 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(190, 24, 93, 0.15);
+}
+.scratch-message {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  white-space: pre-line;
+  text-align: center;
+  font-family: "Georgia", "Palatino", serif;
+  font-size: clamp(0.85rem, 2.6vw, 1rem);
+  line-height: 1.65;
+  color: #831843;
+  background: #fff;
+}
+.scratch-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  touch-action: none;
+  border-radius: 16px;
+}
+.scratch-done {
+  margin-top: 0.6rem;
+  color: #9f1239;
+  font-weight: 600;
+  font-size: 0.9rem;
+  animation: fadeSlideUp 0.4s ease both;
+}
+
+/* ══════════════════════════════════════════════
+   LOVE LETTER
+   ══════════════════════════════════════════════ */
+.love-letter {
+  margin: 1rem auto 0;
+  padding: 1.2rem 1rem;
+  max-width: 440px;
+  width: 100%;
+  border-radius: 16px;
+  background: linear-gradient(170deg, #fffbeb, #fef3c7);
+  border: 1px solid rgba(217, 169, 78, 0.35);
+  box-shadow: 0 8px 24px rgba(180, 130, 50, 0.1);
+  text-align: left;
+  animation: fadeSlideUp 0.5s ease both;
+}
+.letter-text {
+  margin: 0;
+  font-family: "Georgia", "Palatino", serif;
+  font-size: clamp(0.85rem, 2.6vw, 1rem);
+  line-height: 1.7;
+  color: #78350f;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.cursor {
+  animation: blink 0.7s step-end infinite;
+  color: #b45309;
+  font-weight: 300;
+}
+
+/* ── footer ──────────────────────────────────── */
+.footer-note {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  color: #9f1239;
+  font-weight: 600;
+  font-size: clamp(0.78rem, 2.2vw, 0.88rem);
+}
+
+/* ═══════════════════════════════════════════════
+   KEYFRAMES
+   ═══════════════════════════════════════════════ */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-55vh) translateX(var(--sway, 0px));
+  }
+  100% {
+    transform: translateY(-115vh) translateX(calc(var(--sway, 0px) * -1));
+    opacity: 0;
+  }
+}
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.16);
+  }
+  30% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.1);
+  }
+  60% {
+    transform: scale(1);
+  }
+}
+@keyframes gentlePulse {
+  0%,
+  100% {
+    box-shadow: 0 8px 22px rgba(225, 29, 72, 0.35);
+  }
+  50% {
+    box-shadow:
+      0 8px 30px rgba(225, 29, 72, 0.55),
+      0 0 10px rgba(244, 114, 182, 0.25);
+  }
+}
+@keyframes confettiBurst {
+  0% {
+    transform: translate(0, 0) rotate(0) scale(0);
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--cx), var(--cy)) rotate(var(--cr))
+      scale(var(--cs));
+    opacity: 0;
+  }
+}
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes fadeSlideUp {
+  0% {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   MOBILE
+   ═══════════════════════════════════════════════ */
+@media (max-width: 560px) {
+  .card {
+    padding: 1.4rem 1rem;
+    border-radius: 20px;
+  }
+  .big-heart {
+    font-size: 2.2rem;
+  }
+  .button-arena {
+    height: 220px;
+    width: 94vw;
+  }
+  .yes-btn {
+    left: 12px;
+    font-size: 0.9rem;
+  }
+  .no-btn {
+    right: 12px;
+    font-size: 0.8rem;
+    min-width: 80px;
+  }
+  .tab-btn {
+    font-size: 0.72rem;
+    padding: 0.4rem 0.6rem;
+  }
+  .reasons-grid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  }
+  .reason-card {
+    height: 105px;
+  }
+  .memory-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 280px;
+  }
+  .scratch-wrapper {
+    height: 160px;
+  }
+}
+
+@media (max-width: 380px) {
+  .page {
+    padding: 0.6rem 0.5rem 2rem;
+  }
+  .card {
+    padding: 1.1rem 0.75rem;
+  }
+  .big-heart {
+    font-size: 1.9rem;
+  }
+  .button-arena {
+    height: 240px;
+  }
+  .memory-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 240px;
+  }
 }

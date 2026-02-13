@@ -18,39 +18,29 @@ npm run build
 npm run preview
 ```
 
-## 📦 Deploy to Cloudflare Pages
+## 📦 Deploy to Cloudflare Workers
 
-### Option 1: Deploy via Git (Recommended)
-
-1. Push this repository to GitHub
-2. Go to [Cloudflare Pages Dashboard](https://dash.cloudflare.com/pages)
-3. Click **Create a project** → **Connect to Git**
-4. Select your repository
-5. Configure build settings:
-   - **Build command**: `npm run build`
-   - **Build output directory**: `dist`
-   - **Node version**: `18` (or specify in `.node-version`)
-6. Click **Save and Deploy**
-
-### Option 2: Deploy via Wrangler CLI
+### Deploy via Wrangler CLI
 
 ```bash
-# Install Wrangler globally
+# Install Wrangler globally (if not already installed)
 npm install -g wrangler
 
 # Login to Cloudflare
 wrangler login
 
-# Deploy directly
+# Build and deploy
 npm run build
-wrangler pages deploy dist --project-name=valentines-meandmywife
+wrangler deploy
 ```
+
+Your site will be available at: `https://valentines-meandmywife.<your-subdomain>.workers.dev`
 
 ## 🛠️ Tech Stack
 
 - **React 19** - UI library
 - **Vite 7** - Build tool
-- **Cloudflare Pages** - Hosting platform
+- **Cloudflare Workers** - Hosting platform (with Assets)
 
 ## 📁 Project Structure
 
