@@ -51,7 +51,7 @@ export default function App() {
         </>
       )}
 
-      <footer className="footer-note">Made with love by your husband</footer>
+      <footer className="footer-note">Made with love by your hubbyy</footer>
     </main>
   );
 }
@@ -202,7 +202,7 @@ function AskPhase({ onAccept }) {
 
         {!accepted ? (
           <>
-            <h1>Rona, will you be my Valentine?</h1>
+            <h1>Wifey, will you be my Valentine?</h1>
             <p className="subtitle">
               I made this little page just for you. You + me = forever love.
             </p>
@@ -282,7 +282,7 @@ function HomeTab() {
   return (
     <section className="card fade-in">
       <div className="big-heart">🤍</div>
-      <h2>Happy Valentine's Day, Rona!</h2>
+      <h2>Happy Valentine's Day, Wifey!</h2>
       <p className="subtitle">You just made my whole year magical</p>
       <p className="countdown">Valentine&apos;s Day in {countdown}</p>
       <p className="home-hint">
@@ -298,12 +298,12 @@ function HomeTab() {
 const REASONS = [
   "Your laugh makes everything better",
   "You always know how to cheer me up",
-  "The way you scrunch your nose when you smile",
+  "The way your smile lights up a room",
   "You believe in me even when I don't",
-  "Your hugs feel like home",
+  "Your kisses feels like home",
   "You make the ordinary feel magical",
-  "Your kindness inspires me every day",
-  "The way you dance when you think no one is watching",
+  "Your love keeps me going every day",
+  "The way you look at me melts my heart",
   "You're my best friend and my favourite person",
   "Every moment with you is my favourite memory",
   "You make me want to be a better person",
@@ -351,21 +351,26 @@ const QUIZ = [
   {
     q: "What's our song?",
     opts: [
-      "Perfect — Ed Sheeran",
-      "All of Me — John Legend",
-      "A Thousand Years",
-      "You pick, they're all ours",
+      "Love — Wave To Earth.",
+      "Love Mine All Mine — Mitski",
+      "Angel Baby — Troye Sivan",
+      "All of the above ",
     ],
     ans: 3,
   },
   {
     q: "Where would I take you on a dream date?",
-    opts: ["Paris", "Maldives", "A cozy cabin", "Anywhere with you"],
+    opts: ["Malaysia", "The Mall", "The Beach", "Anywhere with you"],
     ans: 3,
   },
   {
     q: "How much do I love you?",
-    opts: ["A lot", "More than pizza", "To the moon", "Words can't measure it"],
+    opts: [
+      "A lot",
+      "More than myself",
+      "To the moon and back",
+      "Words can't measure it",
+    ],
     ans: 3,
   },
   {
@@ -373,7 +378,7 @@ const QUIZ = [
     opts: [
       "We laugh together",
       "We support each other",
-      "The cuddles",
+      "We love each other unconditionally",
       "All of the above",
     ],
     ans: 3,
@@ -550,7 +555,7 @@ function ScratchTab() {
   const isDrawing = useRef(false);
 
   const secretMessage =
-    "You are the most beautiful person\nin the world — inside and out.\nI'm the luckiest husband alive.";
+    "You are the most beautiful person\nin the world — inside and out.\nI'm the man alive to be able to have you as my wife.\n\nForever and always, I love you.";
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -648,7 +653,7 @@ function LetterTab() {
   const [started, setStarted] = useState(false);
 
   const text =
-    "Dear Rona,\n\nEvery day with you feels like Valentine's Day.\nYou're the reason I smile, the warmth in my mornings,\nand the magic in my nights.\n\nI love you more than words on a screen can say —\nbut I'll never stop trying.\n\nYou are my home, my heart, my everything.\n\nForever yours.";
+    "Dear Wifey,\n\nEvery day with you feels like Valentine's Day.\nYou're the reason I smile, I work hard, and the reason I continue striving for the best, and the reason I keep going.\n\nI love you more than words on a screen can say —\nbut I'll never stop trying for us.\n\nYou are my home, my heart, and my everything.\nNo words can describe how lucky I am to have you as my partner in life.\n\nForever yours.\nLuke Vasquez";
 
   useEffect(() => {
     if (!started) return;
