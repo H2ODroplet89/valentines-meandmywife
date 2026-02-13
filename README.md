@@ -1,16 +1,68 @@
-# React + Vite
+# Valentine's Me and My Wife - React App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application built with Vite, ready to deploy on Cloudflare Pages.
 
-Currently, two official plugins are available:
+## 🚀 Quick Start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+# Install dependencies
+npm install
 
-## React Compiler
+# Run development server
+npm run dev
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Build for production
+npm run build
 
-## Expanding the ESLint configuration
+# Preview production build locally
+npm run preview
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📦 Deploy to Cloudflare Pages
+
+### Option 1: Deploy via Git (Recommended)
+
+1. Push this repository to GitHub
+2. Go to [Cloudflare Pages Dashboard](https://dash.cloudflare.com/pages)
+3. Click **Create a project** → **Connect to Git**
+4. Select your repository
+5. Configure build settings:
+   - **Build command**: `npm run build`
+   - **Build output directory**: `dist`
+   - **Node version**: `18` (or specify in `.node-version`)
+6. Click **Save and Deploy**
+
+### Option 2: Deploy via Wrangler CLI
+
+```bash
+# Install Wrangler globally
+npm install -g wrangler
+
+# Login to Cloudflare
+wrangler login
+
+# Deploy directly
+npm run build
+wrangler pages deploy dist --project-name=valentines-meandmywife
+```
+
+## 🛠️ Tech Stack
+
+- **React 19** - UI library
+- **Vite 7** - Build tool
+- **Cloudflare Pages** - Hosting platform
+
+## 📁 Project Structure
+
+```
+├── public/          # Static assets
+├── src/             # React components and source code
+├── dist/            # Production build output
+├── wrangler.toml    # Cloudflare Pages configuration
+├── _headers         # Custom HTTP headers
+└── vite.config.js   # Vite configuration
+```
+
+## 🔒 Security Headers
+
+Custom security headers are configured in `_headers` and automatically copied to the build output.
